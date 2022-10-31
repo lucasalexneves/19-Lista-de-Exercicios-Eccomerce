@@ -68,4 +68,44 @@ function OrdenarPorId() {
     precos = precoSup
     avaliacoes = avaliacoesSup
     indexSup = 0
+
+    for (var contador = 0; contador < ids.length; contador++) {
+        console.log(ids[contador], nomes[contador], precos[contador], avaliacoes[contador])
+    }   
+}
+
+
+var maiorPreco = 0
+function OrdenarPorPreco() {
+    for (var contador = 0; contador < nomes.length; contador++) {
+        maiorPreco = precos[contador]
+
+        for (var contador2 = 0; contador2 < nomes.length; contador2++) {
+            if(precos[contador2 > maiorPreco]){
+                maiorPreco = precos[contador2]
+            }
+        }
+
+        for (var contador3 = 0; contador3 < nomes.length; contador3++) {
+            if(maiorPreco == precos[contador3]){
+                idsSup[indexSup] = ids[contador3]
+                nomeSup[indexSup] = nomes[contador3]
+                precoSup[indexSup] = precos[contador3]
+                avaliacoesSup[indexSup] = avaliacoes [contador3]
+                precos[contador3] = 0
+                indexSup++
+            }
+            
+        }
+    }
+
+    ids = idsSup
+    nomes = nomeSup
+    precos = precoSup
+    avaliacoes = avaliacoesSup
+    indexSup = 0
+
+    for (var contador = 0; contador < ids.length; contador++) {
+        console.log(ids[contador], nomes[contador], precos[contador], avaliacoes[contador])
+    }   
 }
