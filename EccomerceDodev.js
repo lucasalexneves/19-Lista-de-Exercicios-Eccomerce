@@ -181,6 +181,40 @@ function DeletarProduto(){
     precos = precoSup
     avaliacoes = avaliacoesSup
     indexSup = 0
+}
 
+var continuar = true
 
+while(continuar){
+    var opcao = prompt("Insira a opção que deseja executar: 1 - Cadastro, 2 - Buscar por ID, 3 - Buscar por nome, 4 - Ordenar por ID, 5 - Ordenar por preço, 6 - Ordenar por avaliação, 7 - Atualizar preço, 8 - Deletar produto")
+
+    if(opcao == "1"){
+        CadastrarProduto()
+        console.log("Produto Cadastrado com Sucesso!")
+    } else if(opcao == "2"){
+        var id = parseInt(prompt("Insira um id para pesquisar"))
+        BuscarPorId(id)
+    } else if (opcao == "3"){
+        var nome = prompt("Insira um nome para quesquisar.")
+        BuscarPorNome(nome)
+    } else if (opcao == "4"){
+        OrdenarPorId()
+    } else if(opcao == "5"){
+        OrdenarPorPreco()
+    } else if(opcao == "6"){
+        OrdenarPorAvaliacao()
+    }else if (opcao == "7"){
+        var id = parseInt(prompt("Insira o id do produto que deseja atualizar."))
+        var valor = parseInt(prompt("Insira o novo valor do produto."))
+        AtualizarPreco(id, valor)
+        console.log("Preço atualizado!")
+    }else {
+        DeletarProduto()
+        console.log("Produto deletado com sucesso.")
+    }
+
+    var opcaoContinuar = prompt("Deseja continuar fazendo operações? s ou n")
+    if( opcaoContinuar != "s"){
+        continuar = false
+    }
 }
