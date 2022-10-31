@@ -156,3 +156,31 @@ function AtualizarPreco(id, novoValor){
         }        
     }
 }
+
+function DeletarProduto(){
+    var idDeletado = parseInt(prompt("Insira o Id do produto que quer deletar."))
+
+    for (var contador = 0; contador < ids.length; contador++) {
+        if(idDeletado == ids[contador]){
+            ids[contador] = 0
+        }        
+    }
+    for (var contador = 0; contador < ids.length; contador++) {
+        if(ids[contador] != 0){
+            idsSup[indexSup] = ids [contador]
+            nomeSup[indexSup] = nomes[contador]
+            precoSup[indexSup] = precos[contador]
+            avaliacoesSup[indexSup] = avaliacoes[contador]
+            indexSup++
+        }
+        
+    }
+
+    ids = idsSup
+    nomes = nomeSup
+    precos = precoSup
+    avaliacoes = avaliacoesSup
+    indexSup = 0
+
+
+}
