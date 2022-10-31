@@ -109,3 +109,42 @@ function OrdenarPorPreco() {
         console.log(ids[contador], nomes[contador], precos[contador], avaliacoes[contador])
     }   
 }
+
+var maiorAvaliacao = 0
+
+function OrdenarPorAvaliacao() {
+    for (var contador = 0; contador < avaliacoes.length; contador++) {
+        maiorAvaliacao = avaliacoes[contador]
+
+        for (var contador2 = 0; contador2 < avaliacoes.length; contador2++) {
+            if(avaliacoes[contador] > maiorAvaliacao){
+                maiorAvaliacao = avaliacoes[contador]
+            }
+        }
+        var contador4 = 0
+
+        for (var contador3 = 0; contador3 < avaliacoes.length; contador3++) {
+            
+            if(maiorAvaliacao == avaliacoes[contador3] && contador4 == 0){
+
+                idsSup[indexSup] = ids[contador3]
+                nomeSup[indexSup] = nomes[contador3]
+                precoSup[indexSup] = precos[contador3]
+                avaliacoesSup[indexSup] = avaliacoes[contador3]
+                avaliacoes[contador3] = 0
+                indexSup++
+                contador4++
+            }            
+        }
+    }
+
+    ids = idsSup
+    nomes = nomeSup
+    precos = precoSup
+    avaliacoes = avaliacoesSup
+    indexSup = 0
+
+    for (var contador = 0; contador < ids.length; contador++) {
+        console.log(ids[contador], nomes[contador], precos[contador], avaliacoes[contador])
+    }   
+}
