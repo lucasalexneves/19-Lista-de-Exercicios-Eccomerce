@@ -148,3 +148,11 @@ function OrdenarPorAvaliacao() {
         console.log(ids[contador], nomes[contador], precos[contador], avaliacoes[contador])
     }   
 }
+
+function AtualizarPreco(id, novoValor){
+    for (var contador = 0; contador < ids.length; contador++) {
+        if(id == ids[contador]){
+            precos[contador] = novoValor
+        }        
+    }
+}
