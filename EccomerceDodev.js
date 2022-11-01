@@ -16,7 +16,7 @@ var indexSup = 0
 
 
 function CadastrarProduto() {
-    ids[index] =  parseInt(prompt("Insira o ID do produto:")) 
+    ids[index] =  index + 1
     nomes[index] = prompt ("Insira o nome do produto")
     precos[index] = parseInt(prompt("Insira o preço do produto")) 
     avaliacoes[index] = parseInt(prompt("Insira a avaliação do produto")) 
@@ -77,6 +77,12 @@ function OrdenarPorId() {
 
 var maiorPreco = 0
 function OrdenarPorPreco() {
+
+    idsSup = []
+    nomeSup = []
+    precoSup = []
+    avaliacoesSup = []
+    
     for (var contador = 0; contador < nomes.length; contador++) {
         maiorPreco = precos[contador]
 
@@ -87,13 +93,14 @@ function OrdenarPorPreco() {
         }
 
         for (var contador3 = 0; contador3 < nomes.length; contador3++) {
-            if(maiorPreco == precos[contador3]){
+            if(maiorPreco == precos[contador3] && precos[contador] != 0){
                 idsSup[indexSup] = ids[contador3]
                 nomeSup[indexSup] = nomes[contador3]
                 precoSup[indexSup] = precos[contador3]
                 avaliacoesSup[indexSup] = avaliacoes [contador3]
                 precos[contador3] = 0
                 indexSup++
+                maiorPreco = 0
             }
             
         }
@@ -113,12 +120,18 @@ function OrdenarPorPreco() {
 var maiorAvaliacao = 0
 
 function OrdenarPorAvaliacao() {
+
+    idsSup = []
+    nomeSup = []
+    precoSup = []
+    avaliacoesSup = [] 
+
     for (var contador = 0; contador < avaliacoes.length; contador++) {
         maiorAvaliacao = avaliacoes[contador]
 
         for (var contador2 = 0; contador2 < avaliacoes.length; contador2++) {
-            if(avaliacoes[contador] > maiorAvaliacao){
-                maiorAvaliacao = avaliacoes[contador]
+            if(avaliacoes[contador2] > maiorAvaliacao){
+                maiorAvaliacao = avaliacoes[contador2]
             }
         }
         var contador4 = 0
