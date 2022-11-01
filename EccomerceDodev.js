@@ -171,6 +171,12 @@ function AtualizarPreco(id, novoValor){
 }
 
 function DeletarProduto(){
+
+    idsSup = []
+    nomeSup = []
+    precoSup = []
+    avaliacoesSup = [] 
+    
     var idDeletado = parseInt(prompt("Insira o Id do produto que quer deletar."))
 
     for (var contador = 0; contador < ids.length; contador++) {
