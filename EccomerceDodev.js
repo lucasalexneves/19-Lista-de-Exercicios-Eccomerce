@@ -1,12 +1,26 @@
-
-
-
+/* Imagine que você está fazendo um sistema para um site de venda de arquivos eletrônicos
+Você deve criar funções para:
+1. Cadastrar um produto. Um produto deve ter um id, nome, preço e avaliação;
+2. Buscar um produto por id, ou seja, passar o id como parâmetro e exibir as
+informações do produto correspondente;
+3. Buscar um produto pelo nome e retornar o id dele;
+4. Exibir todos os produtos ordenados pelo id;
+5. Exibir os produtos ordenador pelo preço;
+6. Exibir os produtos pela ordem de avaliação;
+7. Atualizar o preço de um produto, para isso deve receber o id do produto como
+parâmetro e o novo valor para atualizar;
+8. Deletar um produto, não esqueça de organizar as informações para que não fique
+espaços vazios;
+Por fim, utilizando as funções criadas organize a execução do seu código, faça com que o
+usuário possa escolher qual função executar e quando encerrar o programa. */
 
 var ids = []
 var nomes = []
 var precos = []
 var avaliacoes = []
 var index = 0
+var indexId = 0
+
 var idsSup = []
 var nomeSup = []
 var precoSup = []
@@ -16,17 +30,18 @@ var indexSup = 0
 
 
 function CadastrarProduto() {
-    ids[index] =  index + 1
+    ids[index] =  indexId + 1
     nomes[index] = prompt ("Insira o nome do produto")
     precos[index] = parseInt(prompt("Insira o preço do produto")) 
     avaliacoes[index] = parseInt(prompt("Insira a avaliação do produto")) 
     index++
+    indexId++
 }
 
 function BuscarPorId(id) {
     for (var contador = 0; contador < ids.length; contador++) {
         if(id == ids[contador]){
-            console.log("O produto de ID " + id + " é o " + nome[contador] + " custa " + precos[contador] + " e tem avaliação " + avaliacoes[contador])
+            console.log("O produto de ID " + id + " é o " + nomes[contador] + " custa " + precos[contador] + " e tem avaliação " + avaliacoes[contador])
         }       
     }
 }
@@ -42,8 +57,14 @@ function BuscarPorNome(nome) {
 var maiorId = 0
 
 function OrdenarPorId() {
+
+    idsSup = []
+    nomeSup = []
+    precoSup = []
+    avaliacoesSup = []
+
     for (var contador = 0; contador < ids.length; contador++) {
-        maiorId = ids[contador]
+        maiorId = 0
 
         for (var contador2 = 0; contador2 < ids.length; contador2++) {
             if(ids[contador2] > maiorId){
@@ -51,7 +72,7 @@ function OrdenarPorId() {
             }           
         }
 
-        for (var contador3 = 0; contador3 < ids.length; contador3++) {
+        for (var contador3 = 0; contador3 < ids.length; contador3++ && ids[contador3] != 0) {
             if(maiorId == ids[contador3]){
                 idsSup[indexSup] = ids[contador3]
                 nomeSup[indexSup] = nomes[contador3]
@@ -83,24 +104,25 @@ function OrdenarPorPreco() {
     precoSup = []
     avaliacoesSup = []
     
-    for (var contador = 0; contador < nomes.length; contador++) {
-        maiorPreco = precos[contador]
+    for (var contador = 0; contador < precos.length; contador++) {
 
-        for (var contador2 = 0; contador2 < nomes.length; contador2++) {
-            if(precos[contador2 > maiorPreco]){
+        maiorPreco = 0
+
+        for (var contador2 = 0; contador2 < precos.length; contador2++) {
+            if(precos[contador2] > maiorPreco){
                 maiorPreco = precos[contador2]
             }
         }
 
-        for (var contador3 = 0; contador3 < nomes.length; contador3++) {
-            if(maiorPreco == precos[contador3] && precos[contador] != 0){
+        for (var contador3 = 0; contador3 < precos.length; contador3++) {
+            if(maiorPreco == precos[contador3]){
                 idsSup[indexSup] = ids[contador3]
                 nomeSup[indexSup] = nomes[contador3]
                 precoSup[indexSup] = precos[contador3]
                 avaliacoesSup[indexSup] = avaliacoes [contador3]
-                precos[contador3] = 0
                 indexSup++
                 maiorPreco = 0
+                precos[contador3] = 0
             }
             
         }
@@ -127,15 +149,15 @@ function OrdenarPorAvaliacao() {
     avaliacoesSup = [] 
 
     for (var contador = 0; contador < avaliacoes.length; contador++) {
-        maiorAvaliacao = avaliacoes[contador]
+        maiorAvaliacao = 0
 
         for (var contador2 = 0; contador2 < avaliacoes.length; contador2++) {
             if(avaliacoes[contador2] > maiorAvaliacao){
                 maiorAvaliacao = avaliacoes[contador2]
             }
         }
-        var contador4 = 0
 
+        var contador4 = 0
         for (var contador3 = 0; contador3 < avaliacoes.length; contador3++) {
             
             if(maiorAvaliacao == avaliacoes[contador3] && contador4 == 0){
@@ -200,6 +222,7 @@ function DeletarProduto(){
     precos = precoSup
     avaliacoes = avaliacoesSup
     indexSup = 0
+    index = index - 1
 }
 
 var continuar = true
@@ -227,9 +250,11 @@ while(continuar){
         var valor = parseInt(prompt("Insira o novo valor do produto."))
         AtualizarPreco(id, valor)
         console.log("Preço atualizado!")
-    }else {
+    }else if (opcao == "8") {
         DeletarProduto()
         console.log("Produto deletado com sucesso.")
+    } else {
+        console.log("Opção inválida!")
     }
 
     var opcaoContinuar = prompt("Deseja continuar fazendo operações? s ou n")
